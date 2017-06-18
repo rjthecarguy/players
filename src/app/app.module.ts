@@ -6,6 +6,7 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { WorkOrders} from '../providers/work-orders';
+import { Data} from '../providers/data';
 import { Http } from '@angular/http';
 import { HttpModule} from "@angular/http";
 
@@ -33,6 +34,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     StatusBar,
     SplashScreen,
     WorkOrders,
+    Data,
 
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]

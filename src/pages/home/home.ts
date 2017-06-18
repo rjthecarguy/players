@@ -19,11 +19,8 @@ workOrder: any;
   ionViewDidLoad() {
 
   	this.woService.getWorkOrders().subscribe((WorkOrder) => {
- 
-            this.workOrder = WorkOrder.rows.map(row => {
-                return row.value;
-            });
- 
+ 		this.workOrder = WorkOrder;
+            
         });
   }
 

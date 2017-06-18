@@ -1,7 +1,9 @@
-import { Injectable } from '@angular/core';
+import { Injectable, NgZone } from '@angular/core';
 import { Http } from '@angular/http';
 import PouchDB from 'pouchdb';
+import { Data } from './data';
 import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/from';
 
@@ -14,30 +16,52 @@ import 'rxjs/add/observable/from';
 @Injectable()
 export class WorkOrders {
 
-	db: any;
-    remote: string = 'http://74.208.165.188:5984/ics';
+	
+ postSubject: any = new Subject();   
 
 
 
-  constructor(public http: Http) {
+  constructor(public http: Http, public dataService: Data, public zone: NgZone) {
 
-  	this.db = new PouchDB('ics');
- 
-        let options = {
-          live: true,
-          retry: true
-        };
- 
-       this.db.sync(this.remote, options);
-
+  
+  	 this.dataService.db.changes({live: true, since: 'now', include_docs: true}).on('change', (change) => {
+            if(change.doc.type === 'Work Order'){
+                this.emitWorkOrders();
+            }
+        });
 
 
     console.log('Hello WorkOrders Provider');
   }
 
-  getWorkOrders(): Observable<any> {
-  	//return this.http.get('http://74.208.165.188:5984/ics/_design/workOrders/_view/Work_Orders').map(res => res.json()); 
-  	return Observable.from(this.db.query('workOrders/Work_Orders'));
+  getWorkOrders() {
+
+
+  	this.emitWorkOrders();
+
+  	return this.postSubject;
+
+
+
   }
+
+
+  emitWorkOrders(): void {
+ 
+        this.zone.run(() => {
+ 
+            this.dataService.db.query('workOrders/Work_Orders').then((data) => {
+ 
+                let workOrders = data.rows.map(row => {
+                    return row.value;
+                });
+ 
+                this.postSubject.next(workOrders);
+ 
+            });
+ 
+        });
+ 
+    }
 
 }
