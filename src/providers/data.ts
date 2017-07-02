@@ -14,7 +14,7 @@ export class Data {
 
 
 	db: any;
-    remote: string = 'http://74.208.165.188:5984/ics';
+  remote: string = 'http://74.208.165.188:5984/ics';
 
 
 
