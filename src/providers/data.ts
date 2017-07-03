@@ -14,14 +14,14 @@ export class Data {
 
 
 	db: any;
-  remote: string = 'http://74.208.165.188:5984/ics';
+  remote: string = 'http://74.208.165.188:5984/players';
 
 
 
   constructor(public http: Http) {
 
 
-  		this.db = new PouchDB('ics');
+  		this.db = new PouchDB('players');
  
         let options = {
           live: true,

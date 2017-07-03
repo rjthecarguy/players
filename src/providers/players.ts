@@ -14,7 +14,7 @@ import 'rxjs/add/observable/from';
   for more info on providers and Angular 2 DI.
 */
 @Injectable()
-export class WorkOrders {
+export class Players {
 
 	
  postSubject: any = new Subject();   
@@ -25,19 +25,27 @@ export class WorkOrders {
 
   
   	 this.dataService.db.changes({live: true, since: 'now', include_docs: true}).on('change', (change) => {
-            if(change.doc.type === 'Work Order'){
-                this.emitWorkOrders();
+            if(change.doc.type === 'Player'){
+                this.emitPlayers();
             }
         });
 
 
-    console.log('Hello WorkOrders Provider');
+    console.log('Hello Players Provider');
   }
 
-  getWorkOrders() {
+
+addPlayer(player): void {
+
+this.dataService.db.put(player);
+
+}
 
 
-  	this.emitWorkOrders();
+  getPlayers() {
+
+
+  	this.emitPlayers();
 
   	return this.postSubject;
 
@@ -46,17 +54,17 @@ export class WorkOrders {
   }
 
 
-  emitWorkOrders(): void {
+  emitPlayers(): void {
  
         this.zone.run(() => {
  
             this.dataService.db.query('workOrders/Work_Orders').then((data) => {
  
-                let workOrders = data.rows.map(row => {
+                let Players = data.rows.map(row => {
                     return row.value;
                 });
  
-                this.postSubject.next(workOrders);
+                this.postSubject.next(Players);
  
             });
  

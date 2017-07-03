@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { WorkOrders} from '../../providers/work-orders';
+
 
 @Component({
   selector: 'page-home',
@@ -8,20 +8,16 @@ import { WorkOrders} from '../../providers/work-orders';
 })
 export class HomePage {
 
-workOrder: any;
 
 
-  constructor(public navCtrl: NavController, public woService: WorkOrders) {
+  constructor(public navCtrl: NavController) {
 
   }
 
 
   ionViewDidLoad() {
 
-  	this.woService.getWorkOrders().subscribe((WorkOrder) => {
- 		this.workOrder = WorkOrder;
-            
-        });
+  	
   }
 
 }

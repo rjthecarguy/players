@@ -4,8 +4,9 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import { AddPlayer} from '../pages/add-player/add-player'
 import { ListPage } from '../pages/list/list';
-import { WorkOrders} from '../providers/work-orders';
+import { Players} from '../providers/players';
 import { Data} from '../providers/data';
 import { Http } from '@angular/http';
 import { HttpModule} from "@angular/http";
@@ -15,6 +16,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 @NgModule({
   declarations: [
+    AddPlayer,
     MyApp,
     HomePage,
     ListPage
@@ -26,6 +28,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   ],
   bootstrap: [IonicApp],
   entryComponents: [
+    AddPlayer,
     MyApp,
     HomePage,
     ListPage
@@ -33,7 +36,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   providers: [
     StatusBar,
     SplashScreen,
-    WorkOrders,
+    Players,
     Data,
 
     {provide: ErrorHandler, useClass: IonicErrorHandler}
