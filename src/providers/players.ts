@@ -16,9 +16,12 @@ import 'rxjs/add/observable/from';
 @Injectable()
 export class Players {
 
+
+
 	
  postSubject: any = new Subject();   
-
+ key:any;
+ searchString: any;
 
 
   constructor(public http: Http, public dataService: Data, public zone: NgZone) {
@@ -57,8 +60,10 @@ this.dataService.db.put(player);
   emitPlayers(): void {
  
         this.zone.run(() => {
+
+          this.key = this.searchString;
  
-            this.dataService.db.query('players/byLastName').then((data) => {
+            this.dataService.db.query('players/byLastName', {startkey:this.key, endkey:this.key+ "\u9999"}).then((data) => {
  
                 let Players = data.rows.map(row => {
                     return row.value;

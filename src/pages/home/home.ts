@@ -12,6 +12,7 @@ export class HomePage {
 
 searchForm: FormGroup;
 playerRecord: any;
+searchString:any;;
 
   constructor(public navCtrl: NavController, public formBuilder: FormBuilder, public playerService: Players ) {
 
@@ -28,6 +29,11 @@ playerRecord: any;
 
 search()  {
 
+this.playerService.searchString = this.searchForm.controls.lastName.value;
+
+this.playerService.getPlayers();
+
+	
 
 }
 
