@@ -42,12 +42,14 @@ this.playerService.getPlayers();
 setSearchLast() {
 
 this.searchLast = true;
+this.playerService.queryMap ="players/byLastName";
 
 }
 
 setSearchFirst() {
 
 this.searchLast = false;
+this.playerService.queryMap ="players/byFirstName";
 
 }
 
