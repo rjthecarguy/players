@@ -13,8 +13,13 @@
  <form [formGroup]="searchForm">
 
 
- <ion-item >
+ <ion-item  *ngIf="searchLast">
             <ion-label floating>Search by Last Name</ion-label>
+            <ion-input formControlName="lastName" type="text"></ion-input>
+        </ion-item>
+
+        <ion-item  *ngIf="!searchLast">
+            <ion-label floating>Search by First Name</ion-label>
             <ion-input formControlName="lastName" type="text"></ion-input>
         </ion-item>
 
@@ -22,13 +27,30 @@
 
 
 
-   <button ion-button full color="primary" (click)="search()">Search</button>
+   <button *ngIf="searchLast" ion-button full color="primary" (click)="search()">Search</button>
 
- <ion-list>
-        <ion-item *ngFor="let player of playerRecord">
+    <button *ngIf="!searchLast" ion-button full color="primary" (click)="search()">Search</button>
+
+
+ <ion-list  *ngIf="searchLast">
+        <ion-item  *ngFor="let player of playerRecord">
             {{player.lastName}} , {{player.firstName}}&nbsp; &nbsp; : &nbsp;{{player.rating}} 
         </ion-item>
     </ion-list>
 
+
+     <ion-list  *ngIf="!searchLast">
+        <ion-item  *ngFor="let player of playerRecord">
+            {{player.firstName}} &nbsp; {{player.lastName}}  &nbsp; &nbsp; : &nbsp;{{player.rating}} 
+        </ion-item>
+    </ion-list>
+<ion-footer>
+  <ion-toolbar>
+  	<div id="footerDiv">
+    <button ion-button color="primary" (click)="setSearchLast()">Search by Last</button>
+    <button ion-button color="primary" (click)="setSearchFirst()">Search by First</button>
+    </div>
+  </ion-toolbar>
+</ion-footer>
 
 </ion-content>

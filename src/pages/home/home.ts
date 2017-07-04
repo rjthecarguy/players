@@ -13,6 +13,7 @@ export class HomePage {
 searchForm: FormGroup;
 playerRecord: any;
 searchString:any;;
+searchLast:boolean = true;
 
   constructor(public navCtrl: NavController, public formBuilder: FormBuilder, public playerService: Players ) {
 
@@ -37,6 +38,18 @@ this.playerService.getPlayers();
 
 }
 
+
+setSearchLast() {
+
+this.searchLast = true;
+
+}
+
+setSearchFirst() {
+
+this.searchLast = false;
+
+}
 
 
   ionViewDidLoad() {
