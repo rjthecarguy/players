@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Players} from '../../providers/players';
 
 
 @Component({
@@ -8,14 +10,35 @@ import { NavController } from 'ionic-angular';
 })
 export class HomePage {
 
+searchForm: FormGroup;
+playerRecord: any;
+
+  constructor(public navCtrl: NavController, public formBuilder: FormBuilder, public playerService: Players ) {
 
 
-  constructor(public navCtrl: NavController) {
+  	this.searchForm = formBuilder.group({
+        lastName: ['',Validators.compose([Validators.required])]
+    });
+
+
+
 
   }
 
 
+search()  {
+
+
+}
+
+
+
   ionViewDidLoad() {
+
+  	this.playerService.getPlayers().subscribe((Player) => {
+ 		this.playerRecord = Player;
+            
+        });
 
   	
   }

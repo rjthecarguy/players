@@ -58,7 +58,7 @@ this.dataService.db.put(player);
  
         this.zone.run(() => {
  
-            this.dataService.db.query('workOrders/Work_Orders').then((data) => {
+            this.dataService.db.query('players/byLastName').then((data) => {
  
                 let Players = data.rows.map(row => {
                     return row.value;
