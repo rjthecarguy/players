@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Players} from '../../providers/players';
+import { PlayerDetail } from '../../pages/player-detail/player-detail'
 
 
 @Component({
@@ -53,6 +54,11 @@ this.playerService.queryMap ="players/byFirstName";
 
 }
 
+
+playerDetails(player) {
+
+this.navCtrl.push(PlayerDetail, {recordParam:player});
+}
 
   ionViewDidLoad() {
 

@@ -6,6 +6,7 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { AddPlayer} from '../pages/add-player/add-player'
 import { ListPage } from '../pages/list/list';
+import { PlayerDetail } from '../pages/player-detail/player-detail';
 import { Players} from '../providers/players';
 import { Data} from '../providers/data';
 import { Http } from '@angular/http';
@@ -16,6 +17,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 @NgModule({
   declarations: [
+    PlayerDetail,
     AddPlayer,
     MyApp,
     HomePage,
@@ -28,6 +30,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   ],
   bootstrap: [IonicApp],
   entryComponents: [
+    PlayerDetail,
     AddPlayer,
     MyApp,
     HomePage,

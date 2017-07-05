@@ -44,10 +44,28 @@
 
 
  <ion-list  *ngIf="searchLast">
-        <ion-item  *ngFor="let player of playerRecord">
+
+ 	<ion-item-sliding  *ngFor="let player of playerRecord">
+
+        <ion-item>
             {{player.lastName}} , {{player.firstName}}&nbsp; &nbsp; : &nbsp;{{player.rating}} 
+
+           
         </ion-item>
-    </ion-list>
+
+       
+<ion-item-options>
+
+ <button ion-button (click)="playerDetails(player)">Details</button>
+      <button ion-button color="danger" (click)="share(item)">Edit</button>
+    </ion-item-options>
+     
+    
+
+
+    </ion-item-sliding>
+
+ </ion-list>
 
 
      <ion-list  *ngIf="!searchLast">
