@@ -4,10 +4,8 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>Player Database</ion-title>
-  </ion-navbar>
-</ion-header>
 
-<ion-content padding>
+  </ion-navbar>
 
 
  <form [formGroup]="searchForm">
@@ -32,6 +30,19 @@
     <button *ngIf="!searchLast" ion-button full color="primary" (click)="search()">Search</button>
 
 
+</ion-header>
+
+
+
+
+
+
+<ion-content padding>
+
+
+
+
+
  <ion-list  *ngIf="searchLast">
         <ion-item  *ngFor="let player of playerRecord">
             {{player.lastName}} , {{player.firstName}}&nbsp; &nbsp; : &nbsp;{{player.rating}} 
@@ -44,13 +55,14 @@
             {{player.firstName}} &nbsp; {{player.lastName}}  &nbsp; &nbsp; : &nbsp;{{player.rating}} 
         </ion-item>
     </ion-list>
+
+
+</ion-content>
+
 <ion-footer>
-  <ion-toolbar>
+  
   	<div id="footerDiv">
     <button ion-button color="primary" (click)="setSearchLast()">Search by Last</button>
     <button ion-button color="primary" (click)="setSearchFirst()">Search by First</button>
     </div>
-  </ion-toolbar>
-</ion-footer>
-
-</ion-content>
+  </ion-footer>

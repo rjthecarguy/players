@@ -19,6 +19,7 @@ import { HomePage } from '../../pages/home/home';
 export class AddPlayer {
 
 player: FormGroup;
+submitAttempt: boolean = false;
 
 
 playerRecord: any = {
@@ -41,9 +42,9 @@ playerRecord: any = {
   		this.player = formBuilder.group({
         firstName: ['',Validators.compose([Validators.required, Validators.pattern('[a-zA-Z ]*')])],
         lastName: ['',Validators.compose([Validators.required, Validators.pattern('[a-zA-Z ]*')])],
-        birthDate: ['',Validators.compose([Validators.required])],
+        birthDate: ['',Validators.compose([])],
         rating: ['',Validators.compose([Validators.required])],
-        phone: ['',Validators.compose([Validators.required])]
+        phone: ['',Validators.compose([])]
         });
 
 
@@ -55,6 +56,8 @@ playerRecord: any = {
 
 
   save(){
+
+      this.submitAttempt = true;
  
         // Generate computed fields
         this.playerRecord._id = new Date().toISOString();
@@ -66,11 +69,15 @@ playerRecord: any = {
         this.playerRecord.rating = this.player.controls.rating.value;
         this.playerRecord.phone = this.player.controls.phone.value;
 
- 
+       if (this.player.valid)
+
+       {
+
         this.playerService.addPlayer(this.playerRecord);
 
         this.navCtrl.setRoot(HomePage);
  
+        }
         
  
     }

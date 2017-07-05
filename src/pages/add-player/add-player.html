@@ -7,6 +7,9 @@
 <ion-header>
 
   <ion-navbar>
+  <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
     <ion-title>Add Player</ion-title>
   </ion-navbar>
 
@@ -18,10 +21,20 @@
 
 <form [formGroup]="player">
 
+
+  <ion-item *ngIf="!player.controls.firstName.valid && submitAttempt">
+                <p style="color: #ea6153;">Please enter a first name.</p>
+            </ion-item>
+
  		<ion-item >
             <ion-label floating>First Name</ion-label>
             <ion-input formControlName="firstName" type="text"></ion-input>
         </ion-item>
+
+
+        <ion-item *ngIf="!player.controls.lastName.valid && submitAttempt">
+                <p style="color: #ea6153;">Please enter a last name.</p>
+            </ion-item>
 
         <ion-item >
             <ion-label floating>Last Name</ion-label>
@@ -37,6 +50,11 @@
      		 <ion-label class="dob-label">Date of Birth</ion-label>
       			<ion-datetime displayFormat="MMM D, YYYY" pickerFormat="D MMM YYYY" formControlName="birthDate"></ion-datetime>
     </ion-item>
+
+     <ion-item *ngIf="!player.controls.rating.valid && submitAttempt">
+                <p style="color: #ea6153;">Please select a rating.</p>
+            </ion-item>
+
 
      <ion-item>
     <ion-label class="selectLabel">Rating</ion-label>
